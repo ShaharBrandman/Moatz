@@ -6,13 +6,13 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 
 import { AppLayout } from "@/components/layout/AppLayout";
 import { ProtectedRoute } from "@/components/auth/ProtectedRoute";
-import Login from "./pages/Login";
-import Dashboard from "./pages/Dashboard";
-import Overrides from "./pages/Overrides";
-import Compare from "./pages/Compare";
-import Combined from "./pages/Combined";
-import DebugPage from "./pages/DebugPage";
-import NotFound from "./pages/NotFound";
+import Login from "@/pages/Login";
+import Dashboard from "@/pages/Dashboard";
+import Overrides from "@/pages/Overrides";
+import Compare from "@/pages/Compare";
+import Combined from "@/pages/Combined";
+import DebugPage from "@/pages/DebugPage";
+import NotFound from "@/pages/NotFound";
 
 const queryClient = new QueryClient();
 

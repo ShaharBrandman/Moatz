@@ -30,12 +30,12 @@ export default function Combined() {
   }, []);
 
   const setStep = (key: string, state: StepState) =>
-    setSteps((s) => s.map((x) => (x.key === key ? { ...x, state } : x)));
+    setSteps((s) => s.map((x) => (x.key === key ? { @.x, state } : x)));
 
   const run = async () => {
     setRunning(true);
     setDone(false);
-    setSteps((s) => s.map((x) => ({ ...x, state: "idle" })));
+    setSteps((s) => s.map((x) => ({ @.x, state: "idle" })));
 
     setStep("overrides", "running");
     const ov = await api.getOverrides("local-db");

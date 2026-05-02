@@ -57,7 +57,7 @@ export default function Overrides() {
     const res = await api.pushOverridesToFmc(selected);
     setPushing(false);
     setConfirmOpen(false);
-    setData((prev) => prev.map((d) => (selected.includes(d.id) ? { ...d, pushed: true } : d)));
+    setData((prev) => prev.map((d) => (selected.includes(d.id) ? { @.d, pushed: true } : d)));
     setSelected([]);
     toast.success(`Pushed ${res.pushed} override(s) to FMC`);
   };
