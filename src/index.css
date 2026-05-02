@@ -1,0 +1,151 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Moatzm — network migration toolkit design system.
+   All colors HSL. Dark mode is default. */
+
+@layer base {
+  :root {
+    /* Light (secondary) */
+    --background: 220 20% 98%;
+    --foreground: 222 47% 11%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+
+    --primary: 199 89% 48%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222 47% 11%;
+
+    --muted: 210 40% 96%;
+    --muted-foreground: 215 16% 47%;
+
+    --accent: 199 89% 48%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 210 40% 98%;
+
+    --success: 142 71% 45%;
+    --success-foreground: 0 0% 100%;
+    --warning: 38 92% 50%;
+    --warning-foreground: 222 47% 11%;
+    --info: 199 89% 48%;
+    --info-foreground: 0 0% 100%;
+
+    --diff-added-bg: 142 71% 45% / 0.12;
+    --diff-added-fg: 142 71% 35%;
+    --diff-removed-bg: 0 72% 51% / 0.12;
+    --diff-removed-fg: 0 72% 45%;
+
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 199 89% 48%;
+
+    --radius: 0.625rem;
+
+    --sidebar-background: 220 20% 97%;
+    --sidebar-foreground: 222 30% 20%;
+    --sidebar-primary: 199 89% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 210 40% 94%;
+    --sidebar-accent-foreground: 222 47% 11%;
+    --sidebar-border: 214 32% 88%;
+    --sidebar-ring: 199 89% 48%;
+  }
+
+  .dark {
+    /* Primary experience — deep slate with cyan accent */
+    --background: 222 33% 7%;
+    --foreground: 210 40% 96%;
+
+    --card: 222 30% 10%;
+    --card-foreground: 210 40% 96%;
+
+    --popover: 222 30% 10%;
+    --popover-foreground: 210 40% 96%;
+
+    --primary: 190 95% 55%;
+    --primary-foreground: 222 47% 8%;
+
+    --secondary: 222 25% 14%;
+    --secondary-foreground: 210 40% 96%;
+
+    --muted: 222 22% 15%;
+    --muted-foreground: 215 18% 62%;
+
+    --accent: 190 95% 55%;
+    --accent-foreground: 222 47% 8%;
+
+    --destructive: 0 75% 58%;
+    --destructive-foreground: 210 40% 98%;
+
+    --success: 152 76% 50%;
+    --success-foreground: 222 47% 8%;
+    --warning: 38 95% 58%;
+    --warning-foreground: 222 47% 8%;
+    --info: 190 95% 55%;
+    --info-foreground: 222 47% 8%;
+
+    --diff-added-bg: 152 76% 45% / 0.18;
+    --diff-added-fg: 152 76% 65%;
+    --diff-removed-bg: 0 75% 58% / 0.18;
+    --diff-removed-fg: 0 80% 72%;
+
+    --border: 222 22% 18%;
+    --input: 222 22% 18%;
+    --ring: 190 95% 55%;
+
+    --sidebar-background: 222 35% 6%;
+    --sidebar-foreground: 215 20% 70%;
+    --sidebar-primary: 190 95% 55%;
+    --sidebar-primary-foreground: 222 47% 8%;
+    --sidebar-accent: 222 28% 12%;
+    --sidebar-accent-foreground: 210 40% 96%;
+    --sidebar-border: 222 25% 13%;
+    --sidebar-ring: 190 95% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+    background-image:
+      radial-gradient(circle at 15% 0%, hsl(var(--primary) / 0.08), transparent 40%),
+      radial-gradient(circle at 85% 100%, hsl(190 95% 55% / 0.05), transparent 50%);
+    background-attachment: fixed;
+  }
+  code, pre, .font-mono {
+    font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+}
+
+@layer components {
+  .glass-panel {
+    @apply bg-card/60 backdrop-blur-xl border border-border/60;
+  }
+  .scan-line {
+    background: linear-gradient(90deg, transparent, hsl(var(--primary) / 0.6), transparent);
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    background: linear-gradient(135deg, hsl(var(--primary)), hsl(190 95% 75%));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+}
