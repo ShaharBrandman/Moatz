@@ -78,7 +78,7 @@ export default function Compare() {
   };
 
   useEffect(() => {
-    document.title = "Policy Comparison — Moatz";
+    document.title = "Policy Comparison — Moatzm";
     load();
   }, []);
 
