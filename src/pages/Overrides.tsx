@@ -37,7 +37,7 @@ export default function Overrides() {
   const [pushing, setPushing] = useState(false);
 
   useEffect(() => {
-    document.title = "CSM Overrides — Moatzm";
+    document.title = "CSM Overrides — Moatz";
   }, []);
 
   const fetchData = async (src: DataSource) => {

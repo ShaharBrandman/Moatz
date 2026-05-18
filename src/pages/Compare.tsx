@@ -78,7 +78,7 @@ export default function Compare() {
   };
 
   useEffect(() => {
-    document.title = "Policy Comparison — Moatzm";
+    document.title = "Policy Comparison — Moatz";
     load();
   }, []);
 
@@ -100,7 +100,7 @@ export default function Compare() {
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
-    a.download = `moatzm-policy-diff-${Date.now()}.json`;
+    a.download = `Moatz-policy-diff-${Date.now()}.json`;
     a.click();
     URL.revokeObjectURL(url);
     toast.success("Exported comparison results");

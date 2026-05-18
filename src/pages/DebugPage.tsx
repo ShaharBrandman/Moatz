@@ -14,7 +14,7 @@ export default function DebugPage() {
   const { enabled, setEnabled, verbose, setVerbose, entries, clear } = useDebug();
 
   useEffect(() => {
-    document.title = "Debug Console — Moatzm";
+    document.title = "Debug Console — Moatz";
   }, []);
 
   return (

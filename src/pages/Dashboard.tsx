@@ -79,7 +79,7 @@ export default function Dashboard() {
   };
 
   useEffect(() => {
-    document.title = "Dashboard — Moatzm";
+    document.title = "Dashboard — Moatz";
     load();
   }, []);
 
@@ -89,7 +89,7 @@ export default function Dashboard() {
         <div>
           <h1 className="text-3xl font-bold tracking-tight">Migration Dashboard</h1>
           <p className="mt-1 text-sm text-muted-foreground">
-            Operational overview of CSM, FMC and the Moatzm local datastore.
+            Operational overview of CSM, FMC and the Moatz local datastore.
           </p>
         </div>
         <Button variant="outline" size="sm" onClick={load} disabled={loading}>
@@ -118,7 +118,7 @@ export default function Dashboard() {
             <StatusCard
               label="Local DB"
               ok={status.localDbConnected}
-              detail="postgres://moatzm"
+              detail="postgres://moatz"
               icon={<Database className="h-3.5 w-3.5" />}
             />
             <Card className="relative overflow-hidden border-border bg-card/60 p-4">

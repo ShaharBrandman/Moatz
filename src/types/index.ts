@@ -6,6 +6,11 @@ export interface User {
   role: Role;
 }
 
+export type Policy = {
+  name: string
+  children?: Policy[];
+}
+
 export type DataSource = "local-db" | "remote-csm";
 
 export interface ObjectOverride {
@@ -20,6 +25,8 @@ export interface ObjectOverride {
 }
 
 export interface PolicyRule {
+  parent?: String;   //TODO: Add funcintionlity
+  policy: String; //TODO: Add funcintionlity
   id: string;
   name: string;
   action: "permit" | "deny";

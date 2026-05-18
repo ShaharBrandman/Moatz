@@ -43,7 +43,7 @@ export function AppSidebar() {
           {!collapsed && (
             <div className="flex flex-col">
               <span className="text-sm font-bold tracking-tight text-sidebar-foreground">
-                MOATZM
+                MOATZ
               </span>
               <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
                 ASA · CSM → FMC

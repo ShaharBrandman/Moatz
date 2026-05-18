@@ -26,7 +26,7 @@ export default function Combined() {
   const [done, setDone] = useState(false);
 
   useEffect(() => {
-    document.title = "Combined Workflow — Moatzm";
+    document.title = "Combined Workflow — Moatz";
   }, []);
 
   const setStep = (key: string, state: StepState) =>
