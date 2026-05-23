@@ -20,7 +20,7 @@ export interface ObjectOverride {
   objectType: "network" | "host" | "service" | "group";
   originalValue: string;
   overriddenValue: string;
-  updatedAt: string;
+  // updatedAt: string;
   pushed: boolean;
 }
 

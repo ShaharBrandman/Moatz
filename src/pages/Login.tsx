@@ -191,7 +191,9 @@ export default function Login() {
                   id="policy-search"
                   list="policies-list"
                   value={policy}
-                  onChange={(e) => setPolicy(e.target.value)}
+                  onChange={
+                    (e) => setPolicy(e.target.value.replace(' ', '').replace('↳', '')) //Important shit
+                  }
                   placeholder="Search and select a policy..."
                   className="pl-10 pr-10 font-mono"
                   autoComplete="off"

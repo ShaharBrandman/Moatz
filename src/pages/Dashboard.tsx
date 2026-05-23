@@ -106,22 +106,22 @@ export default function Dashboard() {
             <StatusCard
               label="CSM"
               ok={status.csmConnected}
-              detail="csm-prod.local:443"
+              detail="https://csm:443"
               icon={<Server className="h-3.5 w-3.5" />}
             />
             <StatusCard
               label="FMC"
               ok={status.fmcConnected}
-              detail="fmc-01.corp:8443"
+              detail="https://fmc:443"
               icon={<Server className="h-3.5 w-3.5" />}
             />
             <StatusCard
               label="Local DB"
               ok={status.localDbConnected}
-              detail="postgres://moatz"
+              detail="https://moatz/api/localDB-stability"
               icon={<Database className="h-3.5 w-3.5" />}
             />
-            <Card className="relative overflow-hidden border-border bg-card/60 p-4">
+            {/* <Card className="relative overflow-hidden border-border bg-card/60 p-4">
               <div className="absolute inset-x-0 top-0 h-px scan-line" />
               <div className="flex items-center gap-2 text-muted-foreground">
                 <Activity className="h-3.5 w-3.5" />
@@ -134,7 +134,7 @@ export default function Dashboard() {
                 <AlertCircle className="h-3 w-3 text-warning" />
                 {status.errors} errors in last run
               </p>
-            </Card>
+            </Card> */}
           </div>
 
           <div>
