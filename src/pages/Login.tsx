@@ -1,8 +1,7 @@
 import { useEffect, useState, type FormEvent } from "react";
 import { useNavigate, useLocation, Navigate } from "react-router-dom";
 import { z } from "zod";
-import { Network, Lock, ShieldCheck, ChevronRight, FolderTree } from "lucide-react";
-import { Policy } from "@/types";
+import { Network, Lock, ShieldCheck } from "lucide-react";
 import { useAuth } from "@/store/auth";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -12,68 +11,21 @@ import { toast } from "sonner";
 const schema = z.object({
   username: z.string().trim().min(1, "Username required").max(50),
   password: z.string().min(1, "Password required").max(100),
-  policy: z.string().min(1, "Policy Required").max(25)
 });
 
-const MOCK_POLICIES: Policy[] = [
-  {
-    "name": "Global-Access",
-    children: [
-      {
-        "name": "Global-DC",
-        "children": [
-          {
-            "name": "TLV"
-          },
-          {
-            "name": "USA"
-          },
-          {
-            "name": "JPN"
-          }
-        ]
-      },
-      {
-        "name": "TLV"
-      },
-      {
-        "name": "CAL"
-      },
-      {
-        "name": "NIG"
-      }
-    ]
-  }
-];
-
-const flattenPolicies = (nodes: Policy[], depth = 0): Array<{ label: string; depth: number }> => {
-  return nodes.flatMap((node) => [
-    {
-      label: node.name,
-      depth,
-    },
-    ...(node.children ? flattenPolicies(node.children, depth + 1) : []),
-  ]);
-};
-
 export default function Login() {
-  const { user, login, pushPolicy } = useAuth();
+  const { user, login } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
   const from = (location.state as { from?: { pathname?: string } } | null)?.from?.pathname ?? "/";
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-
-  const [policy, setPolicy] = useState("");
-  const featuredPolicies = flattenPolicies(MOCK_POLICIES);
-
   const [error, setError] = useState<string | null>(null);
-  
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    document.title = "Login — Moatzm";
+    document.title = "Login — Moatz";
   }, []);
 
   if (user) return <Navigate to={from} replace />;
@@ -81,22 +33,17 @@ export default function Login() {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setError(null);
-    const parsed = schema.safeParse({ username, password, policy });
+    const parsed = schema.safeParse({ username, password });
     if (!parsed.success) {
       setError(parsed.error.issues[0].message);
       return;
     }
     setLoading(true);
-    await new Promise((r) => setTimeout(r, 400)); //TODO: Add a normal Promise function
+    await new Promise((r) => setTimeout(r, 400));
     const loginResult = login(parsed.data.username, parsed.data.password);
-    const policyResult = pushPolicy(parsed.data.policy);
     setLoading(false);
     if (!loginResult.ok) {
       setError(loginResult.error ?? "Login failed");
-      return;
-    }
-    else if (!policyResult.ok) {
-      setError(policyResult.error ?? "Policy failure");
       return;
     }
     toast.success(`Welcome back, ${parsed.data.username}`);
@@ -105,7 +52,6 @@ export default function Login() {
 
   return (
     <div className="relative flex min-h-screen items-center justify-center overflow-hidden p-4">
-      {/* Decorative grid */}
       <div
         className="pointer-events-none absolute inset-0 opacity-30"
         style={{
@@ -143,7 +89,6 @@ export default function Login() {
           </div>
 
           <div className="space-y-3">
-            {/* Username Input Div */}
             <div>
               <Label htmlFor="username" className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
                 Username
@@ -158,7 +103,6 @@ export default function Login() {
                 placeholder="admin or viewer"
               />
             </div>
-            {/* Password Input Div */}
             <div>
               <Label htmlFor="password" className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
                 Password
@@ -173,53 +117,6 @@ export default function Login() {
                 className="mt-1 font-mono"
                 placeholder="••••••"
               />
-            </div>
-            {/* Policy Input Div */}
-            <div>
-              <Label
-                htmlFor="policy-search"
-                className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground"
-              >
-                Policy
-              </Label>
-
-              {/* Search input */}
-              <div className="relative mt-1">
-                <FolderTree className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-
-                <Input
-                  id="policy-search"
-                  list="policies-list"
-                  value={policy}
-                  onChange={
-                    (e) => setPolicy(e.target.value.replace(' ', '').replace('↳', '')) //Important shit
-                  }
-                  placeholder="Search and select a policy..."
-                  className="pl-10 pr-10 font-mono"
-                  autoComplete="off"
-                />
-
-                <ChevronRight className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 rotate-90 text-muted-foreground" />
-              </div>
-
-              {/* Searchable dropdown options */}
-              <datalist id="policies-list">
-                {featuredPolicies.map((item) => (
-                  <option
-                    key={`${item.label}-${item.depth}`}
-                    value={`${"\u00A0\u00A0\u00A0\u00A0".repeat(item.depth)}${
-                      item.depth > 0 ? "↳ " : ""
-                    }${item.label}`}
-                  />
-                ))}
-              </datalist>
-
-              {/* Selected policy display */}
-              {policy && (
-                <p className="mt-1 text-[10px] font-mono uppercase tracking-widest text-muted-foreground whitespace-pre">
-                  Selected: {policy}
-                </p>
-              )}
             </div>
           </div>
 
